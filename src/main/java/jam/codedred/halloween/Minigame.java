@@ -28,6 +28,7 @@ public class Minigame {
 		this.armorStandLocation = armorStandLocation;
 	}
 	
+	// teleports all players to their respective locations
 	public void teleportPlayers() {
 		final Iterator<String> iterator = MinigameManager.getPlayers().iterator();
 		int i = 0;
@@ -37,6 +38,7 @@ public class Minigame {
 		}
 	}
 	
+	// gives the starting kit (if it isn't null) to all players in the candies hashmap
 	public void giveKit() {
 		if (kit == null) return;
 		final Iterator<String> iterator = MinigameManager.getPlayers().iterator();
@@ -51,6 +53,7 @@ public class Minigame {
 		}
 	}
 	
+	// sets the current game's name to its name
 	public void updateScoreboard() {
 		ScoreboardManager.setGameName(name);
 	}

@@ -18,34 +18,50 @@ public class MinigameManager {
 	
 	private static HashMap<String, Integer> playerCandies = new HashMap<>();
 	
+	// returns all players in the hashmap
 	public static Set<String> getPlayers() {
 		return playerCandies.keySet();
 	}
 	
+	// returns the amount of candies the player has
+	// this method receives the name of the player
 	public static int getPlayerCandies(String player) {
 		return playerCandies.getOrDefault(player.toLowerCase(), 0);
 	}
 	
+	// returns the amount of candies the player has
+	// this method receives the instance of the player
 	public static int getPlayerCandies(Player player) {
 		return getPlayerCandies(player.getName());
 	}
 	
-	public static void setPlayerCandies(String player, int points) {
-		playerCandies.put(player.toLowerCase(), points);
+	// sets the amount of candies the player has
+	// this method receives the name and the amount of candies
+	public static void setPlayerCandies(String player, int candies) {
+		playerCandies.put(player.toLowerCase(), candies);
 	}
 	
-	public static void setPlayerCandies(Player player, int points) {
-		setPlayerCandies(player.getName(), points);
+	// sets the amount of candies the player has
+	// this method receives the instance and the amount of candies
+	public static void setPlayerCandies(Player player, int candies) {
+		setPlayerCandies(player.getName(), candies);
 	}
 	
-	public static void addPlayerCandies(String player, int points) {
-		setPlayerCandies(player, getPlayerCandies(player) + points);
+	// adds an amount of candies to the player
+	// this method receives the name of the player and the amount of candies
+	public static void addPlayerCandies(String player, int candies) {
+		setPlayerCandies(player, getPlayerCandies(player) + candies);
 	}
 	
-	public static void addPlayerCandies(Player player, int points) {
-		addPlayerCandies(player, points);
+	// adds an amount of candies to the player
+	// this method receives the instance of the player and the amount of candies
+	public static void addPlayerCandies(Player player, int candies) {
+		addPlayerCandies(player, candies);
 	}
 	
+	// resets thoroughly the hashmap
+	// it might be used to new rounds
+	// notice that you might add the player back in the hashmap if you want the scoreboard to show them
 	public static void resetCandies() {
 		playerCandies = new HashMap<>();
 	}
@@ -103,10 +119,12 @@ public class MinigameManager {
 			objective.getScore(gamePlayer).setScore(0);
 		}
 		
+		// sets the name of the current game
 		public static void setGameName(String name) {
 			game.setSuffix("§e" + name);
 		}
 		
+		// sets up the amount of candies in the scoreboard
 		private static void setPlayerPlace(Team place, String player) {
 			place.setSuffix("§e - " + getPlayerCandies(player.toLowerCase()));
 		}
@@ -138,6 +156,7 @@ public class MinigameManager {
 			setPlayerPlace(third, player.getName());
 		}
 		
+		// sorts the scoreboard and organize it from the person who has more candies to the person who has less candies
 		public static void sortScoreboard() {
 			final String[] ranking = getRanking();
 			setFirstPlayer(Bukkit.getOfflinePlayer(ranking[0]));
@@ -145,6 +164,7 @@ public class MinigameManager {
 			setThirdPlayer(Bukkit.getOfflinePlayer(ranking[2]));
 		}
 		
+		// get the ranking, from the person who has more candies to the person who has less candies
 		public static String[] getRanking() {
 			final Set<String> remaining = playerCandies.keySet();
 			final String[] ranking = new String[3];
@@ -164,6 +184,7 @@ public class MinigameManager {
 			return ranking;
 		}
 		
+		// show the scoreboard to a player
 		public static void setScoreboard(Player player) {
 			player.setScoreboard(scoreboard);
 		}
