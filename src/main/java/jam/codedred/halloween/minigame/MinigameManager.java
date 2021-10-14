@@ -14,8 +14,8 @@ import org.bukkit.scoreboard.Team;
 
 public class MinigameManager {
 
-	static List<Minigame> minigameList = new ArrayList<>();
-	static List<Minigame> roundMinigameList = new ArrayList<>();
+	public static final List<Minigame> minigamesList = new ArrayList<>();
+	public static final List<Minigame> roundMinigameList = new ArrayList<>();
 
 	// Candies Manager ->
 
@@ -67,9 +67,9 @@ public class MinigameManager {
 
 	public static void selectGames(int amount) {
 		for (int i =0; i < amount; i++) {
-			if (amount <= minigameList.size()) continue;
-			Minigame selected = minigameList.get(new Random().nextInt(minigameList.size()));
-			if (roundMinigameList.contains(selected)) selected = minigameList.get(new Random().nextInt(minigameList.size()));
+			if (amount <= minigamesList.size()) continue;
+			Minigame selected = minigamesList.get(new Random().nextInt(minigamesList.size()));
+			if (roundMinigameList.contains(selected)) selected = minigamesList.get(new Random().nextInt(minigamesList.size()));
 			roundMinigameList.add(selected);
 		}
 	}
