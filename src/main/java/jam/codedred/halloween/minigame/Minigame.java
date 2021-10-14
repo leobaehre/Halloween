@@ -75,12 +75,14 @@ public abstract class Minigame implements Listener {
 		}
 	}
 
+	// End the game
 	public void endGame() {
 		task.cancel();
 		onEnd();
 		this.unRegisterEvents();
 	}
 
+	// Start the game
 	public void startGame() {
 		task = new RunMinigameTask(this).runTaskTimer(Halloween.INSTANCE, 0, 1);
 		onStart();
@@ -92,14 +94,9 @@ public abstract class Minigame implements Listener {
 		ScoreboardManager.setGameName(name);
 	}
 
+
+	// Abstract methodes for minigames
 	public abstract void onStart();
 	public abstract void onTick();
 	public abstract void onEnd();
-
-	protected void broadcast(String... messages) {
-		for (String name : MinigameManager.getPlayers()) {
-			Player player = Bukkit.getPlayer(name);
-			ChatUtil.tell(player, messages);
-		}
-	}
 }

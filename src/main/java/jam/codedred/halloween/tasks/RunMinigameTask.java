@@ -11,6 +11,7 @@ public class RunMinigameTask extends BukkitRunnable {
         this.minigame = minigame;
     }
 
+    // Calls the onTick method in the minigame
     @Override
     public void run() {
         minigame.onTick();

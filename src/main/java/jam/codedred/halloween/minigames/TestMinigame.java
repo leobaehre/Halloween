@@ -14,6 +14,14 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.ItemStack;
 import jam.codedred.halloween.minigame.MinigameManager.ScoreboardManager;
 
+
+/*
+ *
+ *  TEMPLATE FOR A MINIGAME
+ *
+ *
+ */
+
 public class TestMinigame extends Minigame {
     public TestMinigame() {
         super("Test",
@@ -34,7 +42,7 @@ public class TestMinigame extends Minigame {
         for (String name : MinigameManager.getPlayers()) {
             Player player = Bukkit.getPlayer(name);
             ScoreboardManager.setScoreboard(player);
-            broadcast("&aGame has started!");
+            ChatUtil.broadcast("&aGame has started!");
         }
         ScoreboardManager.sortScoreboard();
     }
