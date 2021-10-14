@@ -56,7 +56,7 @@ public class MinigameManager {
 	// adds an amount of candies to the player
 	// this method receives the instance of the player and the amount of candies
 	public static void addPlayerCandies(Player player, int candies) {
-		addPlayerCandies(player, candies);
+		addPlayerCandies(player.getName(), candies);
 	}
 	
 	// resets thoroughly the hashmap
@@ -130,39 +130,39 @@ public class MinigameManager {
 			place.setSuffix("§e - " + getPlayerCandies(player.toLowerCase()));
 		}
 		
-		private static void setFirstPlayer(OfflinePlayer player) {
+		private static void setFirstPlayer(OfflinePlayer player, String playerName) {
 			scoreboard.resetScores(firstPlayer);
 			first.removePlayer(firstPlayer);
 			first.addPlayer(player);
 			firstPlayer = player;
 			objective.getScore(firstPlayer).setScore(4);
-			setPlayerPlace(first, player.getName());
+			setPlayerPlace(first, playerName);
 		}
 		
-		private static void setSecondPlayer(OfflinePlayer player) {
+		private static void setSecondPlayer(OfflinePlayer player, String playerName) {
 			scoreboard.resetScores(secondPlayer);
 			second.removePlayer(secondPlayer);
 			second.addPlayer(player);
 			secondPlayer = player;
 			objective.getScore(secondPlayer).setScore(3);
-			setPlayerPlace(second, player.getName());
+			setPlayerPlace(second, playerName);
 		}
 		
-		private static void setThirdPlayer(OfflinePlayer player) {
+		private static void setThirdPlayer(OfflinePlayer player, String playerName) {
 			scoreboard.resetScores(thirdPlayer);
 			third.removePlayer(thirdPlayer);
 			third.addPlayer(player);
 			thirdPlayer = player;
 			objective.getScore(thirdPlayer).setScore(2);
-			setPlayerPlace(third, player.getName());
+			setPlayerPlace(third, playerName);
 		}
 		
 		// sorts the scoreboard and organize it from the person who has more candies to the person who has less candies
 		public static void sortScoreboard() {
 			final String[] ranking = getRanking();
-			setFirstPlayer(Bukkit.getOfflinePlayer("§e" + ranking[0]));
-			setSecondPlayer(Bukkit.getOfflinePlayer("§e" + ranking[1]));
-			setThirdPlayer(Bukkit.getOfflinePlayer("§e" + ranking[2]));
+			setFirstPlayer(Bukkit.getOfflinePlayer("§e" + ranking[0]), ranking[0]);
+			setSecondPlayer(Bukkit.getOfflinePlayer("§e" + ranking[1]), ranking[1]);
+			setThirdPlayer(Bukkit.getOfflinePlayer("§e" + ranking[2]), ranking[2]);
 		}
 		
 		// gets the ranking, from the person who has more candies to the person who has less candies
