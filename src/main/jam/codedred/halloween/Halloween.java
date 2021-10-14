@@ -2,6 +2,7 @@ package jam.codedred.halloween;
 
 import jam.codedred.halloween.minigame.Minigame;
 import jam.codedred.halloween.minigame.MinigameManager;
+import jam.codedred.halloween.tasks.MainScheduler;
 import jam.codedred.halloween.utils.CommandInformation;
 
 import java.io.IOException;
@@ -26,6 +27,8 @@ public final class Halloween extends JavaPlugin {
         loadCommands();
         loadEvents();
         registerMinigames();
+        
+        MainScheduler.start();
     }
 
     @Override

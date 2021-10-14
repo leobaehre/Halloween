@@ -16,6 +16,7 @@ public class MainScheduler {
 	@SuppressWarnings("deprecation")
 	public static void start() {
 		if (running) return;
+		running = true;
 		
 		Bukkit.getScheduler().scheduleAsyncRepeatingTask(Halloween.INSTANCE, new Runnable() {
 			@Override
@@ -34,8 +35,6 @@ public class MainScheduler {
 				}
 			}
 		}, 0, 1);
-		
-		running = true;
 	}
 	
 	public static boolean isRunning() {
