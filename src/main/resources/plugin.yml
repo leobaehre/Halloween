@@ -1,5 +1,8 @@
 name: Halloween
-version: '${project.version}'
+version: 1.0.0
 main: jam.codedred.halloween.Halloween
-api-version: 1.17
-authors: [ xsubo5, abidux, GROGY, johnny ]
+api-version: 1.16
+authors: [ xsubo5, abidux, GROGY, johnny, Jamie ]
+commands:
+  spawn:
+  start:
