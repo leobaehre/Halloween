@@ -25,7 +25,7 @@ public final class Halloween extends JavaPlugin {
         
         loadCommands();
         loadEvents();
-        loadMinigames();
+        registerMinigames();
     }
 
     @Override
@@ -69,11 +69,11 @@ public final class Halloween extends JavaPlugin {
 		}
     }
 
-    private void loadMinigames() {
+    private void registerMinigames() {
 		try {
 			for (final ClassInfo classInfo : ClassPath.from(getClassLoader()).getTopLevelClassesRecursive("jam.codedred.halloween.minigames")) {
 				try {
-					MinigameManager.minigameList.add((Minigame) Class.forName(classInfo.getName()).newInstance());
+					MinigameManager.minigamesList.add((Minigame) Class.forName(classInfo.getName()).newInstance());
 				} catch (Exception ex) {
 					continue;
 				}
