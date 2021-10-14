@@ -14,8 +14,8 @@ import org.bukkit.scoreboard.Team;
 
 public class MinigameManager {
 
-	static List<Minigame> minigameList = new ArrayList<>();
-	static List<Minigame> roundMinigameList = new ArrayList<>();
+	public static final List<Minigame> minigameList = new ArrayList<>();
+	public static final List<Minigame> roundMinigameList = new ArrayList<>();
 
 	// Candies Manager ->
 

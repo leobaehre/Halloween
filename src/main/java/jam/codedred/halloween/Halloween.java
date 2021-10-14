@@ -1,5 +1,7 @@
 package jam.codedred.halloween;
 
+import jam.codedred.halloween.minigame.Minigame;
+import jam.codedred.halloween.minigame.MinigameManager;
 import jam.codedred.halloween.utils.CommandInformation;
 
 import java.io.IOException;
@@ -14,7 +16,6 @@ import com.google.common.reflect.ClassPath.ClassInfo;
 
 public final class Halloween extends JavaPlugin {
 
-	// test comment
     public static Halloween INSTANCE;
 
     @Override
@@ -24,6 +25,7 @@ public final class Halloween extends JavaPlugin {
         
         loadCommands();
         loadEvents();
+        loadMinigames();
     }
 
     @Override
@@ -39,13 +41,13 @@ public final class Halloween extends JavaPlugin {
 					try {
 						getCommand(cls.getDeclaredAnnotation(CommandInformation.class).value()).setExecutor((CommandExecutor) cls.newInstance());
 					} catch (InstantiationException | IllegalAccessException e) {
-						Bukkit.getConsoleSender().sendMessage("�cCommand in class " + cls.getName() + " couldn't be loaded.");
+						Bukkit.getConsoleSender().sendMessage("§cCommand in class " + cls.getName() + " couldn't be loaded.");
 						continue;
 					}
 				}
 			}
 		} catch (IOException | ClassNotFoundException e) {
-			Bukkit.getConsoleSender().sendMessage("�cHalloween plugin wasn't able load commands.");
+			Bukkit.getConsoleSender().sendMessage("§cHalloween plugin wasn't able to load commands.");
 		}
     }
     
@@ -57,14 +59,28 @@ public final class Halloween extends JavaPlugin {
 					try {
 						Bukkit.getPluginManager().registerEvents((Listener) cls.newInstance(), this);
 					} catch (InstantiationException | IllegalAccessException e) {
-						Bukkit.getConsoleSender().sendMessage("�cEvents in class " + cls.getName() + " couldn't be loaded.");
+						Bukkit.getConsoleSender().sendMessage("§cEvents in class " + cls.getName() + " couldn't be loaded.");
 						continue;
 					}
 				}
 			}
 		} catch (ClassNotFoundException | IOException e) {
-			Bukkit.getConsoleSender().sendMessage("�cHalloween plugin wasn't able load events.");
+			Bukkit.getConsoleSender().sendMessage("§cHalloween plugin wasn't able to load events.");
 		}
     }
+
+    private void loadMinigames() {
+		try {
+			for (final ClassInfo classInfo : ClassPath.from(getClassLoader()).getTopLevelClassesRecursive("jam.codedred.halloween.minigames")) {
+				try {
+					MinigameManager.minigameList.add((Minigame) Class.forName(classInfo.getName()).newInstance());
+				} catch (Exception ex) {
+					continue;
+				}
+			}
+		} catch (IOException e) {
+			Bukkit.getConsoleSender().sendMessage("§cHalloween plugin wasn't able to load minigames.");
+		}
+	}
     
 }
