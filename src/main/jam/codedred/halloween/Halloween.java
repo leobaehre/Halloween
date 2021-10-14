@@ -17,7 +17,7 @@ import com.google.common.reflect.ClassPath.ClassInfo;
 public final class Halloween extends JavaPlugin {
 
     public static Halloween INSTANCE;
-
+    
     @Override
     public void onEnable() {
         // Plugin startup logic

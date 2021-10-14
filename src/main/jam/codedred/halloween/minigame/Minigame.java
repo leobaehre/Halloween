@@ -1,26 +1,18 @@
 package jam.codedred.halloween.minigame;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import jam.codedred.halloween.Halloween;
 import jam.codedred.halloween.StartingKit;
-import jam.codedred.halloween.tasks.RunMinigameTask;
-import jam.codedred.halloween.utils.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
 import jam.codedred.halloween.minigame.MinigameManager.ScoreboardManager;
-import org.bukkit.plugin.EventExecutor;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
+import jam.codedred.halloween.tasks.PluginScheduler;
 
 public abstract class Minigame implements Listener {
 	
@@ -33,7 +25,7 @@ public abstract class Minigame implements Listener {
 	public final Location[] locations;
 	public final Location armorStandLocation;
 
-	private BukkitTask task;
+	private PluginScheduler task;
 
 	public Minigame(String name, String displayName, ItemStack icon, StartingKit kit, Location armorStandLocation, Location... locations) {
 		this.name = name;
@@ -77,14 +69,19 @@ public abstract class Minigame implements Listener {
 
 	// End the game
 	public void endGame() {
-		task.cancel();
+		task.stop();
 		onEnd();
 		this.unRegisterEvents();
 	}
 
 	// Start the game
 	public void startGame() {
-		task = new RunMinigameTask(this).runTaskTimer(Halloween.INSTANCE, 0, 1);
+		task = new PluginScheduler(1) {
+			@Override
+			public void run() {
+				onTick();
+			}
+		};
 		onStart();
 		updateScoreboard();
 	}
