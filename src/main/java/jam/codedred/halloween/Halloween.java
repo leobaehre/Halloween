@@ -14,6 +14,7 @@ import com.google.common.reflect.ClassPath.ClassInfo;
 
 public final class Halloween extends JavaPlugin {
 
+	// test comment
     public static Halloween INSTANCE;
 
     @Override
@@ -38,13 +39,13 @@ public final class Halloween extends JavaPlugin {
 					try {
 						getCommand(cls.getDeclaredAnnotation(CommandInformation.class).value()).setExecutor((CommandExecutor) cls.newInstance());
 					} catch (InstantiationException | IllegalAccessException e) {
-						Bukkit.getConsoleSender().sendMessage("§cCommand in class " + cls.getName() + " couldn't be loaded.");
+						Bukkit.getConsoleSender().sendMessage("ï¿½cCommand in class " + cls.getName() + " couldn't be loaded.");
 						continue;
 					}
 				}
 			}
 		} catch (IOException | ClassNotFoundException e) {
-			Bukkit.getConsoleSender().sendMessage("§cHalloween plugin wasn't able load commands.");
+			Bukkit.getConsoleSender().sendMessage("ï¿½cHalloween plugin wasn't able load commands.");
 		}
     }
     
@@ -56,13 +57,13 @@ public final class Halloween extends JavaPlugin {
 					try {
 						Bukkit.getPluginManager().registerEvents((Listener) cls.newInstance(), this);
 					} catch (InstantiationException | IllegalAccessException e) {
-						Bukkit.getConsoleSender().sendMessage("§cEvents in class " + cls.getName() + " couldn't be loaded.");
+						Bukkit.getConsoleSender().sendMessage("ï¿½cEvents in class " + cls.getName() + " couldn't be loaded.");
 						continue;
 					}
 				}
 			}
 		} catch (ClassNotFoundException | IOException e) {
-			Bukkit.getConsoleSender().sendMessage("§cHalloween plugin wasn't able load events.");
+			Bukkit.getConsoleSender().sendMessage("ï¿½cHalloween plugin wasn't able load events.");
 		}
     }
     
