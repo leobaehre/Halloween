@@ -7,15 +7,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Halloween extends JavaPlugin {
 
-    static Halloween INSTANCE;
-    public static Halloween getInstance() {
-        return INSTANCE;
-    }
+    public static Halloween INSTANCE;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-
         INSTANCE = this;
 
         getCommand("spawn").setExecutor(new SpawnCommand());

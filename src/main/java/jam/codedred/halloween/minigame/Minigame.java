@@ -42,7 +42,7 @@ public abstract class Minigame implements Listener {
 		this.kit = kit;
 		this.locations = locations;
 		this.armorStandLocation = armorStandLocation;
-		Bukkit.getPluginManager().registerEvents(this, Halloween.getInstance());
+		Bukkit.getPluginManager().registerEvents(this, Halloween.INSTANCE);
 	}
 
 	protected void unRegisterEvents() {
@@ -82,7 +82,7 @@ public abstract class Minigame implements Listener {
 	}
 
 	public void startGame() {
-		task = new RunMinigameTask(this).runTaskTimer(Halloween.getInstance(), 0, 1);
+		task = new RunMinigameTask(this).runTaskTimer(Halloween.INSTANCE, 0, 1);
 		onStart();
 		updateScoreboard();
 	}
