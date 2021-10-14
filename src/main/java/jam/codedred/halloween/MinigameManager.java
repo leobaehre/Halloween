@@ -107,6 +107,7 @@ public class MinigameManager {
 			first.addPlayer(firstPlayer);
 			second.addPlayer(secondPlayer);
 			third.addPlayer(thirdPlayer);
+			game.addPlayer(gamePlayer);
 			
 			objective = scoreboard.registerNewObjective("candies", "dummy", "§6Halloween");
 			objective.setDisplaySlot(DisplaySlot.SIDEBAR);
@@ -164,7 +165,7 @@ public class MinigameManager {
 			setThirdPlayer(Bukkit.getOfflinePlayer(ranking[2]));
 		}
 		
-		// get the ranking, from the person who has more candies to the person who has less candies
+		// gets the ranking, from the person who has more candies to the person who has less candies
 		public static String[] getRanking() {
 			final Set<String> remaining = playerCandies.keySet();
 			final String[] ranking = new String[3];
@@ -184,7 +185,7 @@ public class MinigameManager {
 			return ranking;
 		}
 		
-		// show the scoreboard to a player
+		// shows the scoreboard to a player
 		public static void setScoreboard(Player player) {
 			player.setScoreboard(scoreboard);
 		}
