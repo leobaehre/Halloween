@@ -160,9 +160,9 @@ public class MinigameManager {
 		// sorts the scoreboard and organize it from the person who has more candies to the person who has less candies
 		public static void sortScoreboard() {
 			final String[] ranking = getRanking();
-			setFirstPlayer(Bukkit.getOfflinePlayer(ranking[0]));
-			setSecondPlayer(Bukkit.getOfflinePlayer(ranking[1]));
-			setThirdPlayer(Bukkit.getOfflinePlayer(ranking[2]));
+			setFirstPlayer(Bukkit.getOfflinePlayer("§e" + ranking[0]));
+			setSecondPlayer(Bukkit.getOfflinePlayer("§e" + ranking[1]));
+			setThirdPlayer(Bukkit.getOfflinePlayer("§e" + ranking[2]));
 		}
 		
 		// gets the ranking, from the person who has more candies to the person who has less candies
