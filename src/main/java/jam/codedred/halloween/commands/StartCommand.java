@@ -20,14 +20,9 @@ public class StartCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            for (Player op : Bukkit.getOnlinePlayers()) {
-                MinigameManager.setPlayerCandies(op, 0);
-            }
-            MinigameManager.addPlayerCandies(player.getName(), 1);
+            System.out.println("Runned!");
 
-            ChatUtil.tell(player, String.valueOf(MinigameManager.getPlayers()), String.valueOf(MinigameManager.getPlayerCandies(player)));
-
-            new TestMinigame().startGame();
+            MinigameManager.startRound(Bukkit.getOnlinePlayers());
         }
 
         return true;
