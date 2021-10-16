@@ -1,5 +1,7 @@
 package jam.codedred.halloween;
 
+import jam.codedred.halloween.commands.SpawnCommand;
+import jam.codedred.halloween.commands.StartCommand;
 import jam.codedred.halloween.minigame.Minigame;
 import jam.codedred.halloween.minigame.MinigameManager;
 import jam.codedred.halloween.tasks.MainScheduler;
@@ -17,12 +19,12 @@ import com.google.common.reflect.ClassPath.ClassInfo;
 
 public final class Halloween extends JavaPlugin {
 
-    public static Halloween INSTANCE;
+    private static Halloween instance;
     
     @Override
     public void onEnable() {
         // Plugin startup logic
-        INSTANCE = this;
+        instance = this;
         
         loadCommands();
         loadEvents();
@@ -37,21 +39,9 @@ public final class Halloween extends JavaPlugin {
     }
     
     private void loadCommands() {
-    	try {
-			for (final ClassInfo classInfo : ClassPath.from(getClassLoader()).getTopLevelClassesRecursive("jam.codedred.halloween.commands")) {
-				final Class<?> cls = Class.forName(classInfo.getName());
-				if (CommandExecutor.class.isAssignableFrom(cls) && cls.isAnnotationPresent(CommandInformation.class)) {
-					try {
-						getCommand(cls.getDeclaredAnnotation(CommandInformation.class).value()).setExecutor((CommandExecutor) cls.newInstance());
-					} catch (InstantiationException | IllegalAccessException e) {
-						Bukkit.getConsoleSender().sendMessage("§cCommand in class " + cls.getName() + " couldn't be loaded.");
-						continue;
-					}
-				}
-			}
-		} catch (IOException | ClassNotFoundException e) {
-			Bukkit.getConsoleSender().sendMessage("§cHalloween plugin wasn't able to load commands.");
-		}
+    	getCommand("spawn").setExecutor(new SpawnCommand());
+    	getCommand("start").setExecutor(new StartCommand());
+    	getCommand("maze").setExecutor(null);
     }
     
     private void loadEvents() {
@@ -84,6 +74,10 @@ public final class Halloween extends JavaPlugin {
 		} catch (IOException e) {
 			Bukkit.getConsoleSender().sendMessage("§cHalloween plugin wasn't able to load minigames.");
 		}
+	}
+
+	public static Halloween getInstance() {
+    	return instance;
 	}
     
 }

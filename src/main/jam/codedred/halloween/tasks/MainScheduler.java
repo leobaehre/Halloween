@@ -18,7 +18,7 @@ public class MainScheduler {
 		if (running) return;
 		running = true;
 		
-		Bukkit.getScheduler().scheduleAsyncRepeatingTask(Halloween.INSTANCE, new Runnable() {
+		Bukkit.getScheduler().scheduleAsyncRepeatingTask(Halloween.getInstance(), new Runnable() {
 			@Override
 			public void run() {
 				for (final PluginScheduler scheduler : asyncSchedulers) {
@@ -27,7 +27,7 @@ public class MainScheduler {
 			}
 		}, 0, 1);
 		
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(Halloween.INSTANCE, new Runnable() {
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(Halloween.getInstance(), new Runnable() {
 			@Override
 			public void run() {
 				for (final PluginScheduler scheduler : syncSchedulers) {
