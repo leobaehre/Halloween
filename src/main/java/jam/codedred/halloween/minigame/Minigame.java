@@ -34,7 +34,7 @@ public abstract class Minigame implements Listener {
 		this.kit = kit;
 		this.locations = locations;
 		this.armorStandLocation = armorStandLocation;
-		Bukkit.getPluginManager().registerEvents(this, Halloween.INSTANCE);
+		Bukkit.getPluginManager().registerEvents(this, Halloween.getInstance());
 	}
 
 	protected void unRegisterEvents() {
