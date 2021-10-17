@@ -7,4 +7,6 @@ public interface NMS {
 
     void spawnDweller(World world, Location spawnLoc, Location targetLoc);
 
+    void spawnMazeDwellers(World world, Location... spawnLocations);
+
 }
