@@ -88,7 +88,7 @@ public abstract class Minigame implements Listener {
 	
 	// sets the current game's name to its name
 	public void updateScoreboard() {
-		ScoreboardManager.setGameName(name);
+		ScoreboardManager.setGameName(displayName);
 	}
 
 

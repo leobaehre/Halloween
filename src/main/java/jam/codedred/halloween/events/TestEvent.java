@@ -9,7 +9,8 @@ public class TestEvent implements Listener {
 	// test event
 	@EventHandler
 	void join(PlayerJoinEvent e) {
-		System.out.println(e.getPlayer().getName() + " joined.");
+		//message sent in JoinGameEvent
+//		System.out.println(e.getPlayer().getName() + " joined.");
 	}
 	
 }

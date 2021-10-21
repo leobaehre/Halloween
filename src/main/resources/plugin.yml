@@ -6,3 +6,4 @@ authors: [ xsubo5, abidux, GROGY, johnny, Jamie ]
 commands:
   spawn:
   start:
+  startminigame:

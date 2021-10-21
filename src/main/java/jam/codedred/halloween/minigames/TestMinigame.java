@@ -58,8 +58,8 @@ public class TestMinigame extends Minigame {
         }
     }
 
-    @EventHandler
-    public static void onBlockBreak(BlockBreakEvent event) {
-        event.setCancelled(true);
-    }
+//    @EventHandler
+//    public static void onBlockBreak(BlockBreakEvent event) {
+//        event.setCancelled(true);
+//    }
 }

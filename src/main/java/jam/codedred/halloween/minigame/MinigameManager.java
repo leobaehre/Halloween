@@ -1,8 +1,11 @@
 package jam.codedred.halloween.minigame;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
-import jam.codedred.halloween.utils.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -12,14 +15,44 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import jam.codedred.halloween.minigames.TestMinigame;
+import jam.codedred.halloween.minigames.TrickOrTreatMinigame;
+import jam.codedred.halloween.utils.ChatUtil;
+
 public class MinigameManager {
 
 	public static final List<Minigame> minigamesList = new ArrayList<>();
 	public static final List<Minigame> roundMinigameList = new ArrayList<>();
-
+	
+	//The current game number, when a new minigame starts this number should be increased
+	//This number can be used for text like the intro of the game and also you could add it to the scoreboard
+	public static int game = 0;
+	
+	//add an instance of all minigames to minigamesList, called on enable
+	public static void createMinigamesList() {
+		minigamesList.add(new TestMinigame());
+		minigamesList.add(new TrickOrTreatMinigame());
+	}
+	
+	//Get a minigame instance by name
+	public static Minigame getMinigame(String name) {
+		for (Minigame game : minigamesList) {
+			if (game.name.equalsIgnoreCase(name)) {
+				return game;
+			}
+		}
+		//returns null if game name doesn't exist
+		return null;
+	}
+	
 	// Candies Manager ->
 
 	private static HashMap<String, Integer> playerCandies = new HashMap<>();
+	
+	//add a new player to the game
+	public static void addPlayer(Player player) {
+		playerCandies.put(player.getName(), 0);
+	}
 
 	// returns all players in the hashmap
 	public static Set<String> getPlayers() {
